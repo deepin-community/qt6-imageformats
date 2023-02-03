@@ -7,13 +7,13 @@ Build-Depends: cmake (>= 3.18~),
                debhelper-compat (= 13),
                libgl-dev,
                libmng-dev,
-               libqt6opengl6-dev (>= 6.2.4~),
+               libqt6opengl6-dev (>= 6.4.2~),
                libtiff-dev,
                libwebp-dev,
                ninja-build,
                pkg-config,
-               qt6-base-dev (>= 6.2.4~),
-               qt6-base-private-dev (>= 6.2.4~),
+               qt6-base-dev (>= 6.4.2~),
+               qt6-base-private-dev (>= 6.4.2~),
 Standards-Version: 4.6.0
 Homepage: https://www.qt.io/developers/
 Rules-Requires-Root: no
