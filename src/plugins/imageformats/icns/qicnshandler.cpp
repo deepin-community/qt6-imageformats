@@ -1,42 +1,6 @@
-/****************************************************************************
-**
-** Copyright (C) 2016 The Qt Company Ltd.
-** Copyright (C) 2016 Alex Char.
-** Contact: https://www.qt.io/licensing/
-**
-** This file is part of the plugins of the Qt Toolkit.
-**
-** $QT_BEGIN_LICENSE:LGPL$
-** Commercial License Usage
-** Licensees holding valid commercial Qt licenses may use this file in
-** accordance with the commercial license agreement provided with the
-** Software or, alternatively, in accordance with the terms contained in
-** a written agreement between you and The Qt Company. For licensing terms
-** and conditions see https://www.qt.io/terms-conditions. For further
-** information use the contact form at https://www.qt.io/contact-us.
-**
-** GNU Lesser General Public License Usage
-** Alternatively, this file may be used under the terms of the GNU Lesser
-** General Public License version 3 as published by the Free Software
-** Foundation and appearing in the file LICENSE.LGPL3 included in the
-** packaging of this file. Please review the following information to
-** ensure the GNU Lesser General Public License version 3 requirements
-** will be met: https://www.gnu.org/licenses/lgpl-3.0.html.
-**
-** GNU General Public License Usage
-** Alternatively, this file may be used under the terms of the GNU
-** General Public License version 2.0 or (at your option) the GNU General
-** Public license version 3 or any later version approved by the KDE Free
-** Qt Foundation. The licenses are as published by the Free Software
-** Foundation and appearing in the file LICENSE.GPL2 and LICENSE.GPL3
-** included in the packaging of this file. Please review the following
-** information to ensure the GNU General Public License requirements will
-** be met: https://www.gnu.org/licenses/gpl-2.0.html and
-** https://www.gnu.org/licenses/gpl-3.0.html.
-**
-** $QT_END_LICENSE$
-**
-****************************************************************************/
+// Copyright (C) 2016 The Qt Company Ltd.
+// Copyright (C) 2016 Alex Char.
+// SPDX-License-Identifier: LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only
 
 #include "qicnshandler_p.h"
 
@@ -462,8 +426,12 @@ static bool parseIconEntryInfo(ICNSEntry &icon)
     if (isIconCompressed(icon))
         return true;
     // Icon depth:
-    if (!depth.isEmpty())
-        icon.depth = ICNSEntry::Depth(depth.toUInt());
+    if (!depth.isEmpty()) {
+        const uint depthUInt = depth.toUInt();
+        if (depthUInt > 32)
+            return false;
+        icon.depth = ICNSEntry::Depth(depthUInt);
+    }
     // Try mono if depth not found
     if (icon.depth == ICNSEntry::DepthUnknown)
         icon.depth = ICNSEntry::DepthMono;
@@ -515,6 +483,9 @@ static bool parseIconEntryInfo(ICNSEntry &icon)
         }
         icon.height = icon.width;
     }
+    // Sanity check
+    if (icon.width == 0 || icon.width > 4096)
+        return false;
     return true;
 }
 
@@ -691,7 +662,7 @@ bool QICNSHandler::canRead() const
 bool QICNSHandler::read(QImage *outImage)
 {
     QImage img;
-    if (!ensureScanned()) {
+    if (!ensureScanned() || m_currentIconIndex >= m_icons.size()) {
         qWarning("QICNSHandler::read(): The device wasn't parsed properly!");
         return false;
     }
@@ -898,7 +869,7 @@ bool QICNSHandler::scanDevice()
             return false;
 
         const qint64 blockDataOffset = device()->pos();
-        if (!isBlockHeaderValid(blockHeader)) {
+        if (!isBlockHeaderValid(blockHeader, ICNSBlockHeaderSize + filelength - blockDataOffset)) {
             qWarning("QICNSHandler::scanDevice(): Failed, bad header at pos %s. OSType \"%s\", length %u",
                      QByteArray::number(blockDataOffset).constData(),
                      nameFromOSType(blockHeader.ostype).constData(), blockHeader.length);
@@ -933,11 +904,14 @@ bool QICNSHandler::scanDevice()
         case ICNSBlockHeader::TypeOdrp:
             // Icns container seems to have an embedded icon variant container
             // Let's start a scan for entries
-            while (device()->pos() < nextBlockOffset) {
+            while (!stream.atEnd() && device()->pos() < nextBlockOffset) {
                 ICNSBlockHeader icon;
                 stream >> icon;
+                if (stream.status() != QDataStream::Ok)
+                    return false;
                 // Check for incorrect variant entry header and stop scan
-                if (!isBlockHeaderValid(icon, blockDataLength))
+                quint64 remaining = blockDataLength - (device()->pos() - blockDataOffset);
+                if (!isBlockHeaderValid(icon, ICNSBlockHeaderSize + remaining))
                     break;
                 if (!addEntry(icon, device()->pos(), blockHeader.ostype))
                     return false;
@@ -1009,7 +983,7 @@ bool QICNSHandler::scanDevice()
             break;
         }
     }
-    return true;
+    return (m_icons.size() > 0);
 }
 
 const ICNSEntry &QICNSHandler::getIconMask(const ICNSEntry &icon) const
