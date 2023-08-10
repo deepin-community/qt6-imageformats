@@ -1,17 +1,137 @@
-qt6-imageformats (6.4.2-1+dde) UNRELEASED; urgency=medium
+qt6-imageformats (6.4.2-4) unstable; urgency=medium
 
-  * New upstream version 6.4.2.
+  * Team upload.
+  * Add symlink to let users find the html doc in the normal Debian path.
 
- -- Lu YaNing <luyaning@uniontech.com>  Fri, 03 Feb 2023 16:14:55 +0800
+ -- Lisandro Damián Nicanor Pérez Meyer <lisandro@debian.org>  Sun, 23 Jul 2023 09:53:21 -0300
 
-qt6-imageformats (6.2.4.1-1+dde) stable; urgency=medium
+qt6-imageformats (6.4.2-3) experimental; urgency=medium
 
-  * Adapt to V23.
+  [ Patrick Franz ]
+  * Remove build-dependency on libqt6opengl6-dev as it has been merged
+    into qt6-base-dev.
 
- -- Lu YaNing <luyaning@uniontech.com>  Sun, 09 Oct 2022 15:07:33 +0800
+  [ Lisandro Damián Nicanor Pérez Meyer ]
+  * Build documentation.
 
-qt6-imageformats (6.2.4-1+dde) stable; urgency=medium
+ -- Lisandro Damián Nicanor Pérez Meyer <lisandro@debian.org>  Sat, 22 Jul 2023 14:35:06 -0300
 
-  * ['Rebuild  against by  current gcc 11.2']
+qt6-imageformats (6.4.2-2) unstable; urgency=medium
 
- -- Deepin Packages Builder <packages@deepin.org>  Wed, 31 Aug 2022 14:56:29 +0800
+  [ Patrick Franz ]
+  * Pass QT_HOST_PATH to cmake in cross-builds, thx to Helmut Grohne.
+
+ -- Patrick Franz <deltaone@debian.org>  Fri, 16 Jun 2023 22:14:24 +0200
+
+qt6-imageformats (6.4.2-1) unstable; urgency=medium
+
+  [ Patrick Franz ]
+  * Switch to the official 6.4.2 tarball, the tarball is the same.
+  * Enable link time optimization.
+
+ -- Patrick Franz <deltaone@debian.org>  Sun, 22 Jan 2023 11:28:21 +0100
+
+qt6-imageformats (6.4.2~rc1-2) unstable; urgency=medium
+
+  [ Patrick Franz ]
+  * Upload to unstable.
+
+ -- Patrick Franz <deltaone@debian.org>  Fri, 30 Dec 2022 16:58:21 +0100
+
+qt6-imageformats (6.4.2~rc1-1) experimental; urgency=medium
+
+  [ Lisandro Damián Nicanor Pérez Meyer ]
+  * New upstream release.
+    - Bump Qt build dependencies.
+  * Bump standards version to 4.6.2, no changes required.
+
+ -- Patrick Franz <deltaone@debian.org>  Tue, 27 Dec 2022 22:26:48 +0100
+
+qt6-imageformats (6.4.1-1) experimental; urgency=medium
+
+  [ Patrick Franz ]
+  * New upstream release (6.4.1).
+  * Bump Qt B-Ds to 6.4.1.
+
+ -- Patrick Franz <deltaone@debian.org>  Tue, 15 Nov 2022 23:02:32 +0100
+
+qt6-imageformats (6.4.0-1) experimental; urgency=medium
+
+  [ Lisandro Damián Nicanor Pérez Meyer ]
+  * Add debian/.gitattributes to easily merge changelogs.
+  * Move .gitignore in root dir to debian/.
+
+  [ Patrick Franz ]
+  * Increase CMake verbosity level.
+  * New upstream release (6.4.0).
+  * Bump Qt B-Ds to 6.4.0.
+
+ -- Patrick Franz <deltaone@debian.org>  Wed, 05 Oct 2022 20:31:13 +0200
+
+qt6-imageformats (6.3.1-2) unstable; urgency=medium
+
+  [ Patrick Franz ]
+  * Upload to unstable.
+
+ -- Patrick Franz <deltaone@debian.org>  Mon, 15 Aug 2022 19:22:35 +0200
+
+qt6-imageformats (6.3.1-1) experimental; urgency=medium
+
+  [ Patrick Franz ]
+  * New upstream release (6.3.1).
+  * Bump Qt B-Ds to 6.3.1.
+  * Bump Standards-Version to 4.6.1 (no changes needed).
+
+ -- Patrick Franz <deltaone@debian.org>  Fri, 15 Jul 2022 20:47:13 +0200
+
+qt6-imageformats (6.3.0-1) experimental; urgency=medium
+
+  [ Patrick Franz ]
+  * New upstream release (6.3.0).
+  * Bump Qt B-Ds to 6.3.0.
+
+ -- Patrick Franz <deltaone@debian.org>  Sun, 29 May 2022 20:15:51 +0200
+
+qt6-imageformats (6.2.4-2) unstable; urgency=medium
+
+  [ Patrick Franz ]
+  * Upload to unstable.
+
+ -- Patrick Franz <deltaone@debian.org>  Fri, 22 Apr 2022 20:06:41 +0200
+
+qt6-imageformats (6.2.4-1) experimental; urgency=medium
+
+  [ Patrick Franz ]
+  * New upstream release (6.2.4).
+  * Bump Qt B-Ds to 6.2.4.
+
+ -- Patrick Franz <deltaone@debian.org>  Tue, 29 Mar 2022 20:24:46 +0200
+
+qt6-imageformats (6.2.2-2) unstable; urgency=medium
+
+  [ Patrick Franz ]
+  * Upload to unstable.
+
+ -- Patrick Franz <deltaone@debian.org>  Tue, 15 Feb 2022 22:16:52 +0100
+
+qt6-imageformats (6.2.2-1) experimental; urgency=medium
+
+  [ Patrick Franz ]
+  * New upstream release (6.2.2).
+  * Bump Qt B-Ds to 6.2.2.
+  * Update description.
+
+ -- Patrick Franz <deltaone@debian.org>  Thu, 02 Dec 2021 09:36:51 +0100
+
+qt6-imageformats (6.2.1-2) experimental; urgency=medium
+
+  [ Patrick Franz ]
+  * Source-only upload to experimental.
+
+ -- Patrick Franz <deltaone@debian.org>  Sun, 21 Nov 2021 01:56:56 +0100
+
+qt6-imageformats (6.2.1-1) experimental; urgency=medium
+
+  * Initial release (Closes: #998332)
+
+ -- Patrick Franz <deltaone@debian.org>  Tue, 02 Nov 2021 16:55:14 +0100
