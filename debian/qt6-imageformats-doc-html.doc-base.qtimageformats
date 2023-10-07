@@ -5,5 +5,5 @@ Abstract: This is the HTML documentation for Qt 6 Image Formats plugins
 Section: Programming/C++
 
 Format: HTML
-Index: /usr/share/doc/qt6-base-doc-html/html/qtimageformats/qtimageformats-index.html
-Files: /usr/share/doc/qt6-base-doc-html/html/qtimageformats/*.html
+Index: /usr/share/doc/qt6-imageformats-doc-html/html/qtimageformats/qtimageformats-index.html
+Files: /usr/share/doc/qt6-imageformats-doc-html/html/qtimageformats/*.html
