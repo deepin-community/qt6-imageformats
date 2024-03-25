@@ -1,3 +1,13 @@
+qt6-imageformats (6.6.2-1) experimental; urgency=medium
+
+  [ Patrick Franz ]
+  * New upstream release (6.6.2).
+  * Bump Qt B-Ds to 6.6.2.
+  * Build-depend on pkgconf instead of pkg-config as the latter has been
+    superseded by the former.
+
+ -- Patrick Franz <deltaone@debian.org>  Fri, 16 Feb 2024 19:22:31 +0100
+
 qt6-imageformats (6.6.1-1) experimental; urgency=medium
 
   [ Patrick Franz ]
