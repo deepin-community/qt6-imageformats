@@ -1,3 +1,9 @@
+qt6-imageformats (6.8.0-0deepin) unstable; urgency=medium
+
+  * New upstream release (6.8.0).
+
+ -- lichenggang <lichenggang@deepin.org>  Thu, 31 Oct 2024 17:00:05 +0800
+
 qt6-imageformats (6.6.1-1) experimental; urgency=medium
 
   [ Patrick Franz ]
