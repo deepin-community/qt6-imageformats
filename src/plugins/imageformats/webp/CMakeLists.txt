@@ -133,6 +133,7 @@ qt_internal_extend_target(QWebpPlugin CONDITION NOT QT_FEATURE_system_webp
         ../../../3rdparty/libwebp/src/utils/filters_utils.c
         ../../../3rdparty/libwebp/src/utils/huffman_encode_utils.c
         ../../../3rdparty/libwebp/src/utils/huffman_utils.c
+        ../../../3rdparty/libwebp/src/utils/palette.c
         ../../../3rdparty/libwebp/src/utils/quant_levels_dec_utils.c
         ../../../3rdparty/libwebp/src/utils/quant_levels_utils.c
         ../../../3rdparty/libwebp/src/utils/random_utils.c
@@ -149,6 +150,8 @@ qt_internal_extend_target(QWebpPlugin CONDITION NOT QT_FEATURE_system_webp
         ../../../3rdparty/libwebp/src/mux
         ../../../3rdparty/libwebp/src/utils
         ../../../3rdparty/libwebp/src/webp
+    ATTRIBUTION_FILE_DIR_PATHS
+        ../../../3rdparty/libwebp
 )
 
 qt_internal_extend_target(QWebpPlugin CONDITION ANDROID AND NOT ANDROID_EMBEDDED AND NOT QT_FEATURE_system_webp
