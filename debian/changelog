@@ -1,3 +1,9 @@
+qt6-imageformats (6.8.0-0deepin2) unstable; urgency=medium
+
+  * QTgaFile: support TGA 1.0 format images without footer signature
+
+ -- Liu Zhangjian <liuzhangjian@uniontech.com>  Thu, 13 Aug 2026 13:08:03 +0800
+
 qt6-imageformats (6.8.0-0deepin1) unstable; urgency=medium
 
   * update cve patch 
